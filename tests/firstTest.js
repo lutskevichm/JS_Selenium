@@ -4,9 +4,15 @@ const {
     Key,
     until
 } = require('selenium-webdriver');
-
-(async function example() {
+const webdriver = require('selenium-webdriver');
+async function myApp() {
     let driver = await new Builder().forBrowser('chrome').build();
+    driver.manage().window().maximize();
+    driver.manage().setTimeouts({
+        implicit: 10000,
+        pageLoad: 10000,
+        script: 10000
+    });
     try {
         await driver.get('http://localhost:8080/ipb-app');
 
@@ -39,5 +45,5 @@ const {
     } finally {
         await driver.quit();
     }
-
-}());
+}
+myApp();
